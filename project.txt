@@ -1,0 +1,5 @@
+version=1.13.2a
+pkg_name=simplesamlphp
+dependencies=-d php5-fpm -d "openssl (>= 0.9.8g)" -d "php-xml-parser (>= 1.2.8)" -d zlib1g -d php5-mhash -d php5-mcrypt
+pkg_description=SimpleSAMLphp software
+
