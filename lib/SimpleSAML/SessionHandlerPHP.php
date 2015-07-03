@@ -76,17 +76,19 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler {
 			throw new SimpleSAML_Error_Exception('Cannot create new session - headers already sent.');
 		}
 
-		/* Generate new (secure) session id. */
-		$sessionId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16));
-		SimpleSAML_Session::createSession($sessionId);
+		if (session_id() === '') { // keep session if already started
+			/* Generate new (secure) session id. */
+			$sessionId = SimpleSAML_Utilities::stringToHex(SimpleSAML_Utilities::generateRandomBytes(16));
+			SimpleSAML_Session::createSession($sessionId);
 
-		if (session_id() !== '') {
-			/* Session already started, close it. */
-			session_write_close();
+			if (session_id() !== '') {
+				/* Session already started, close it. */
+				session_write_close();
+			}
+
+			session_id($sessionId);
+			session_start();
 		}
-
-		session_id($sessionId);
-		session_start();
 
 		return session_id();
 	}
