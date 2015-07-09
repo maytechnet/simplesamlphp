@@ -3,6 +3,7 @@
 set -e
 
 VERSION=$1
+REPOPATH=$2
 
 if ! shift; then
     echo "$0: Missing required version parameter." >&2
@@ -26,11 +27,13 @@ fi
 
 umask 0022
 
-REPOPATH="https://github.com/simplesamlphp/simplesamlphp.git"
+if [ -z $REPOPATH ]; then
+    REPOPATH="https://github.com/simplesamlphp/simplesamlphp.git"
+fi
 
 git clone $REPOPATH $TARGET
 cd $TARGET
-git checkout $TAG
+git checkout $TAG || git checkout $VERSION
 cd ..
 
 # Use composer only on newer versions that have a composer.json
