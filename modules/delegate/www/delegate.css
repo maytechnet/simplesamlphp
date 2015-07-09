@@ -1,0 +1,39 @@
+fieldset {
+    border: 0;
+}
+
+.inputtext {
+    display: block;
+}
+
+#login-text-wrapper,
+#info-text-wrapper {
+    display: none;
+}
+#login-text-wrapper.active,
+#info-text-wrapper.active {
+    display: block;
+}
+
+#login-text-wrapper .login-text,
+#info-text-wrapper .info-text {
+display: none;
+}
+
+#login-text-wrapper .login-text.active,
+#info-text-wrapper .info-text.active {
+    display: block;
+}
+
+button {
+    margin-top: 1em;
+}
+
+#backend-selectors {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.additional-login {
+    margin-top: 0;
+}

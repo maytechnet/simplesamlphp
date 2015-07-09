@@ -1,0 +1,48 @@
+{
+	"header": {
+		"en": "Delegate - Login service"
+	},
+	"generic_delegate_sp_name": {
+		"en": "Generic SP del_name"
+	},
+	"generic_delegate_sp_desc": {
+		"en": "Generic SP del_desc"
+	},
+	"title": {
+		"en": "Delegate - Login service"
+	},
+	"service_provider_request_auth": {
+		"en": "<b>%SPNAME%<\/b> has requested that you login."
+	},
+	"change_backend_button": {
+		"en": "change_button"
+	},
+	"username": {
+		"en": "Username"
+	},
+	"password": {
+		"en": "Password"
+	},
+	"login_button": {
+		"en": "Login"
+	},
+    "loginhelp": {
+      "en": "Forgotten username or password?"
+    },
+	"error_user": {
+		"en": "Wrong username or password"
+	},
+	"error_internal": {
+		"en": "An error occurd during login. Send an e-mail to support (<span style=\"font-weight: normal;\">%MAIL%<\/span>) to report this error. Please include the errorcode in the error report."
+	},
+	"error_external": {
+		"en": "Login service is not able to contact the database and is not able to finish the login. Contact the administrators <a href=\"%LINK%\" target=\"_blank\">computer support<\/a> to report this error. Please include the errorcode in the error report."
+	},
+	"error_trackno": {
+		"en": "Errorcode"
+	},
+	"use_other_system": {
+		"en": "Or log in with"
+	}
+}
+

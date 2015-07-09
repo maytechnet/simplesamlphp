@@ -1,0 +1,32 @@
+{
+	"access_denied": {
+		"en": "You do not have access to this service"
+	},
+	"contact_home": {
+		"en": "You are a registered user at <i>%BACKEND%<\/i>. <i>%BACKEND%<\/i> is not granted access to the service <i>%SPNAME%<\/i>. Contact helpdesk at <i>%SPNAME%<\/i> to find out if they want to get access to this service:"
+	},
+	"help_desk_link": {
+		"en": "Help desk homepage"
+	},
+	"help_desk_email": {
+		"en": "Send mail to help desk"
+	},
+	"url_about_service": {
+		"en": "Go to information page for the service"
+	},
+	"contact_info": {
+		"en": "Contact information:"
+	},
+	"intro": {
+		"en": "You are authenticated at <em>%BACKEND%</em>. <em>%BACKEND%</em> does not have access to <em>%SPNAME%</em>."
+	},
+	"contact": {
+		"en": "If you think <em>%BACKEND%</em> should have access to this service, you can contact the helpdesk:"
+	},
+	"reauth": {
+		"en": "If you have an user account at a different organization, you may be able to log in to <em>%SPNAME%</em> using that account. Your current user will be logged out."
+	},
+	"login": {
+		"en": "Log in as a different user"
+	}
+}

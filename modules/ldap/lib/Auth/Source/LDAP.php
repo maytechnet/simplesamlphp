@@ -44,7 +44,7 @@ class sspmod_ldap_Auth_Source_LDAP extends sspmod_core_Auth_UserPassBase {
 	 * param array $sasl_arg  Associative array of SASL options
 	 * @return array  Associative array with the users attributes.
 	 */
-	protected function login($username, $password, array $sasl_args = NULL) {
+	public function login($username, $password, array $sasl_args = NULL) {
 		assert('is_string($username)');
 		assert('is_string($password)');
 

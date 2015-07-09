@@ -22,7 +22,7 @@ class SimpleSAML_IdP {
 	 *
 	 * @var string
 	 */
-	private $id;
+	protected $id;
 
 
 	/**
@@ -33,7 +33,7 @@ class SimpleSAML_IdP {
 	 *
 	 * @var string
 	 */
-	private $associationGroup;
+	protected $associationGroup;
 
 
 	/**
@@ -41,7 +41,7 @@ class SimpleSAML_IdP {
 	 *
 	 * @var SimpleSAML_Configuration
 	 */
-	private $config;
+	protected $config;
 
 
 	/**
@@ -49,7 +49,7 @@ class SimpleSAML_IdP {
 	 *
 	 * @var SimpleSAML_Auth_Simple
 	 */
-	private $authSource;
+	protected $authSource;
 
 
 	/**
@@ -57,10 +57,43 @@ class SimpleSAML_IdP {
 	 *
 	 * @param string $id  The identifier of this IdP.
 	 */
-	private function __construct($id) {
+	private function __construct($id, SimpleSAML_Configuration $config) {
 		assert('is_string($id)');
 
 		$this->id = $id;
+		$this->config = $config;
+
+		if (substr($id, 0, 5) === 'adfs:') {
+			try {
+				/* This makes the ADFS IdP use the same SP associations as the SAML 2.0 IdP. */
+				$saml2EntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+				$this->associationGroup = 'saml2:' . $saml2EntityId;
+			} catch (Exception $e) {
+				/* Probably no SAML 2 IdP configured for this host. Ignore the error. */
+			}
+		}
+
+		if ($this->associationGroup === NULL) {
+			$this->associationGroup = $this->id;
+		}
+
+		$auth = $this->config->getString('auth');
+		if (SimpleSAML_Auth_Source::getById($auth) !== NULL) {
+			$this->authSource = new SimpleSAML_Auth_Simple($auth);
+		} else {
+			throw new SimpleSAML_Error_Exception('No such "'.$auth.'" auth source found.');
+		}
+	}
+
+
+	/**
+	 * Create IdP from ID.
+	 *
+	 * @param string $id  The identifier of this IdP.
+	 * @return SimpleSAML_IdP  The IdP instance.
+	 */
+	private static function createFromID($id) {
+		assert('is_string($id)');
 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$globalConfig = SimpleSAML_Configuration::getInstance();
@@ -69,41 +102,22 @@ class SimpleSAML_IdP {
 			if (!$globalConfig->getBoolean('enable.saml20-idp', FALSE)) {
 				throw new SimpleSAML_Error_Exception('enable.saml20-idp disabled in config.php.');
 			}
-			$this->config = $metadata->getMetaDataConfig(substr($id, 6), 'saml20-idp-hosted');
+			$config = $metadata->getMetaDataConfig(substr($id, 6), 'saml20-idp-hosted');
 		} elseif (substr($id, 0, 6) === 'saml1:') {
 			if (!$globalConfig->getBoolean('enable.shib13-idp', FALSE)) {
 				throw new SimpleSAML_Error_Exception('enable.shib13-idp disabled in config.php.');
 			}
-			$this->config = $metadata->getMetaDataConfig(substr($id, 6), 'shib13-idp-hosted');
+			$config = $metadata->getMetaDataConfig(substr($id, 6), 'shib13-idp-hosted');
 		} elseif (substr($id, 0, 5) === 'adfs:') {
 			if (!$globalConfig->getBoolean('enable.adfs-idp', FALSE)) {
 				throw new SimpleSAML_Error_Exception('enable.adfs-idp disabled in config.php.');
 			}
-			$this->config = $metadata->getMetaDataConfig(substr($id, 5), 'adfs-idp-hosted');
-
-			try {
-				/* This makes the ADFS IdP use the same SP associations as the SAML 2.0 IdP. */
-				$saml2EntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-				$this->associationGroup = 'saml2:' . $saml2EntityId;
-								
-			} catch (Exception $e) {
-				/* Probably no SAML 2 IdP configured for this host. Ignore the error. */
-			}
+			$config = $metadata->getMetaDataConfig(substr($id, 5), 'adfs-idp-hosted');
 		} else {
 			assert(FALSE);
 		}
-
-		if ($this->associationGroup === NULL) {
-			$this->associationGroup = $this->id;
-		}
-
-
-		$auth = $this->config->getString('auth');
-		if (SimpleSAML_Auth_Source::getById($auth) !== NULL) {
-			$this->authSource = new SimpleSAML_Auth_Simple($auth);
-		} else {
-			throw new SimpleSAML_Error_Exception('No such "'.$auth.'" auth source found.');
-		}
+		$className = $config->getString('class', 'SimpleSAML_IdP');
+		return new $className($id, $config);
 	}
 
 
@@ -130,7 +144,7 @@ class SimpleSAML_IdP {
 			return self::$idpCache[$id];
 		}
 
-		$idp = new self($id);
+		$idp = self::createFromId($id);
 		self::$idpCache[$id] = $idp;
 		return $idp;
 	}

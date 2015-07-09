@@ -1,0 +1,42 @@
+{
+	"header": {
+		"no": "Delegate - Innloggingstjeneste",
+		"nn": "Delegate - Innloggingsteneste"
+	},
+	"generic_delegate_sp_name": {
+		"no": "Generic SP del_navn",
+		"nn": "Generic SP del_namn"
+	},
+	"generic_delegate_sp_desc": {
+		"no": "Generic SP del_desc",
+		"nn": "Generic SP del_desc"
+	},
+	"title": {
+		"no": "Delegate - P\u00e5logging",
+		"nn": "Delegate - P\u00e5logging"
+	},
+	"service_provider_request_auth": {
+		"no": "<b>%SPNAME%<\/b> har bedt om at du logger inn.",
+		"nn": "<b>%SPNAME%<\/b> ber om at du logger inn."
+	},
+	"change_backend_button": {
+		"no": "change_button",
+		"nn": "change_button"
+	},
+	"username": {
+		"no": "Brukernavn",
+		"nn": "Brukarnamn"
+	},
+	"password": {
+		"no": "Passord",
+		"nn": "Passord"
+	},
+	"login_button": {
+		"no": "Logg inn",
+		"nn": "Logg inn"
+	},
+    "loginhelp": {
+      "no": "Glemt brukernavn eller passord?",
+      "nn": "Gl\u00f8ymt brukarnamn eller passord?"
+    }
+}

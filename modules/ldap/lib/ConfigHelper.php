@@ -182,7 +182,7 @@ class sspmod_ldap_ConfigHelper {
 
 		if (empty($password)) {
 			SimpleSAML_Logger::info($this->location . ': Login with empty password disallowed.');
-			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+			throw new SimpleSAML_Error_InvalidCredential('WRONGUSERPASS');
 		}
 
 		$ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout, $this->port, $this->referrals);
@@ -193,7 +193,7 @@ class sspmod_ldap_ConfigHelper {
 		} else {
 			if ($this->searchUsername !== NULL) {
 				if(!$ldap->bind($this->searchUsername, $this->searchPassword)) {
-					throw new Exception('Error authenticating using search username & password.');
+					throw new SimpleSAML_Error_AuthSource('Error authenticating using search username & password.');
 				}
 			}
 
@@ -201,13 +201,13 @@ class sspmod_ldap_ConfigHelper {
 			if ($dn === NULL) {
 				/* User not found with search. */
 				SimpleSAML_Logger::info($this->location . ': Unable to find users DN. username=\'' . $username . '\'');
-				throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+				throw new SimpleSAML_Error_UserNotFound('WRONGUSERPASS');
 			}
 		}
 
 		if (!$ldap->bind($dn, $password, $sasl_args)) {
 			SimpleSAML_Logger::info($this->location . ': '. $username . ' failed to authenticate. DN=' . $dn);
-			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+			throw new SimpleSAML_Error_InvalidCredential('WRONGUSERPASS');
 		}
 
 		/* In case of SASL bind, authenticated and authorized DN may differ */
@@ -218,7 +218,7 @@ class sspmod_ldap_ConfigHelper {
 		if ($this->privRead) {
 			/* Yes, rebind with privs */
 			if(!$ldap->bind($this->privUsername, $this->privPassword)) {
-				throw new Exception('Error authenticating using privileged DN & password.');
+				throw new SimpleSAML_Error_AuthSource('Error authenticating using privileged DN & password.');
 			}
 		}
 

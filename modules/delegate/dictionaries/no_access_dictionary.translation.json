@@ -1,0 +1,42 @@
+{
+	"access_denied": {
+		"no": "Du har ikke tilgang til denne tjenesten",
+		"nn": "Du har ikkje tilgang til denne tenesta"
+	},
+	"contact_home": {
+		"no": "Du er en registrert bruker ved <i>%BACKEND%</i>. <i>%BACKEND%</i> har ikke tilgang til tjeneste <i>%SPNAME%</i>. Kontakt brukerst\u00f8tte ved <i>%BACKEND%</i> for \u00e5 finne ut om de \u00f8nsker \u00e5 \u00e5pne for tjenesten:",
+		"nn": "Du er registrert som brukar ved <i>%BACKEND%</i>. <i>%BACKEND%</i> har ikkje tilgang til tenesta <i>%SPNAME%</i>. Kontakt brukarst\u00f8tte hos <i>%BACKEND%</i> for \u00e5 finna ut om dei \u00f8nskjer \u00e5 opna tenesta:"
+	},
+	"help_desk_link": {
+		"no": "Hjemmesiden til brukerst\u00f8tte",
+		"nn": "Heimeside for brukarst\u00f8tte"
+	},
+	"help_desk_email": {
+		"no": "Send epost til brukerst\u00f8tte",
+		"nn": "Send epost til brukarst\u00f8tte"
+	},
+	"url_about_service": {
+		"no": "G\u00e5 til informasjonsside om tjenesten",
+		"nn": "G\u00e5 til meir informasjon om tenesta"
+	},
+	"contact_info": {
+		"no": "Kontaktinformasjon:",
+		"nn": "Kontaktinformasjon:"
+	},
+	"intro": {
+		"no": "Du er logget inn ved <em>%BACKEND%</em>. <em>%BACKEND%</em> har ikke tilgang til <em>%SPNAME%</em>.",
+		"nn": "Du er logga inn ved <em>%BACKEND%</em>. <em>%BACKEND%</em> har ikkje tilgang til <em>%SPNAME%</em>."
+	},
+	"contact": {
+		"no": "Hvis du mener <em>%BACKEND%</em> skal ha tilgang til denne tjenesten, kan du kontakte brukerst\u00f8tte:",
+		"nn": "Om du meiner <em>%BACKEND%</em> skal ha tilgang til denne tenesta, kan du kontakte brukerst\u00f8tte:"
+	},
+	"reauth": {
+		"no": "Hvis du har en brukerkonto ved en annen organisasjon, kan du kanskje logge inn p\u00e5 <em>%SPNAME%</em> med denne. Du blir da logget ut fra din n\u00e5v\u00e6rende bruker.",
+		"nn": "Om du har ein brukarkonto ved ein annan organisasjon, kan du kanskje logge inn p\u00e5 <em>%SPNAME%</em> med denne. Du blir da logga ut fr\u00e5 din noverande brukar."
+	},
+	"login": {
+		"no": "Logg inn med en annen bruker",
+		"nn": "Logg inn med ein annan brukar"
+	}
+}
